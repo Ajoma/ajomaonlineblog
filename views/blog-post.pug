@@ -1,9 +1,9 @@
 extends layout
 
 block content
+    .container
+        if blogPost
+            h3= blogPost.posttitle
+            p= blogPost.postbody
 
-    if blogPost
-        h3= blogPost.posttitle
-        p= blogPost.postbody
-
-    a(href="/post") Back
+        a(href="/post") Back
