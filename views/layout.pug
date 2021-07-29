@@ -10,15 +10,18 @@ html
  
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    .content 
-      if currentUser
-        span Welcome Back #{currentUser.fname}  
-        a(href="/log-out") Log Out
-      else
-        include login.pug
-
     .container
       include nav.pug
+
+    .container
+      .content 
+        if currentUser
+          span.h4 Welcome Back #{currentUser.fname}  
+          a(href="/log-out") Log Out
+        else
+          include login.pug
+
+    
     .container
       if errors    
         each error in errors
