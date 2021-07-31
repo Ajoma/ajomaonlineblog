@@ -57,6 +57,11 @@ app.use((req, res, next) => {
   req.session.msg = null;
   next();
 });
+
+//  --------------------------------
+// Proxy the dash request to the Python server
+
+app.all(/(data|_dash|_reload)\S*/, require("./routes/data-proxy"));
 //  --------------------------------
 app.use("/", indexRouter);
 app.use("/users", usersRouter);

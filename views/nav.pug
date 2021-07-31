@@ -1,20 +1,4 @@
-//- nav.navbar.navbar-expand-lg.navbar-light.bg-light
-//-   .container-fluid
-//-     a.navbar-brand(href='#') AjomaBlog
-//-     img.d-inline-block.align-text-top(src='../images/logo.jpg' alt='beach' width='30' height='24')
-//-     button.navbar-toggler(type='button', data-bs-toggle='collapse', data-bs-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
-//-       span.navbar-toggler-icon
-//-     .collapse.navbar-collapse#navbarNav
-//-       ul.navbar-nav
-//-         li.nav-item
-//-           a.nav-link.active(aria-current='page', href='/') Home
-//-         li.nav-item
-//-           a.nav-link(href='/post') Posts
-//-         if currentUser
-//-             li.nav-item
-//-             a.nav-link(href='/post/create') Create a Post
 
-        
 nav.navbar.navbar-expand-lg.navbar-dark.bg-success
       .container-fluid
         a.navbar-brand(href='#')
@@ -27,23 +11,31 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-success
             li.nav-item
               a.nav-link.active(aria-current='page' href='/') Home
             li.nav-item
+              a.nav-link(href='/contact') Contacts
+            if currentUser
+              li.nav-item
+              a.nav-link(href='/contact/form') Fill contact form
+            li.nav-item
               a.nav-link(href='/post') Posts
             if currentUser
               li.nav-item
-              a.nav-link(href='/post/create') Create a Post
+              a.nav-link(href='/post/create') Create Post
+            if currentUser && currentUser.role == "manager"
+              li.nav-item
+              a.nav-link(href='/data') Performance Data
 
             li.nav-item.dropdown
               a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false')
-                | Travel Packages
+                | Register
               ul.dropdown-menu(aria-labelledby='navbarDropdown')
                 li
-                  a.dropdown-item(href='#') Air BnB
+                  a.dropdown-item(href='/') Login in
                 li
-                  a.dropdown-item(href='#') Hotels
+                  a.dropdown-item(href='/users/sign-up') Sign up
                 li
                   hr.dropdown-divider
                 li
-                  a.dropdown-item(href='#') Something else here
+                  a.dropdown-item(href='/post/create') Create Post
             li.nav-item
               a.nav-link.disabled(href='#' tabindex='-1' aria-disabled='true') Disabled
         form.d-flex

@@ -18,7 +18,7 @@ router.get("/", function (req, res, next) {
 
 // Show all posts for given username
 router.get("/auth/:uname", function (req, res, next) {
-  // Using the given username paramter, find the user(auther) object from the DB
+  // Using the given username paramter, find the user(author) object from the DB
   // Use the user _id from the user object, to find all posts for the _id
   User.findOne({ username: req.params.uname }, (err, author) => {
     if (err) return processErrors(err, "blog", req, res);

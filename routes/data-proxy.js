@@ -1,62 +1,77 @@
-const http = require("http");
-// or use import http from 'http';
+var httpProxy = require("http-proxy");
+var apiProxy = httpProxy.createProxyServer();
+var serverOne = "http://localhost:8050";
 
-var express = require("express");
-var router = express.Router();
+module.exports = function (req, res) {
+  if (!req.user || req.user.role != "manager") {
+    req.session.msg = "You are  not allowed to access the business data.";
+    res.status(403).redirect("/");
+  }
 
-/* your app config here */
+  console.log("redirecting to Server1");
 
-router.use((oreq, ores) => {
-  const options = {
-    // host to forward to
-    host: "127.0.0.1",
-    // port to forward to
-    port: 8050,
-    // path to forward to
-    path: "/",
-    // request method
-    method: "GET",
-    // headers to send
-    //headers: oreq.headers,
-  };
+  apiProxy.web(req, res, { target: serverOne });
+};
 
-  const creq = http
-    .request(options, (pres) => {
-      // set encoding
-      pres.setEncoding("utf8");
+// const http = require("http");
+// // or use import http from 'http';
 
-      // set http status code based on proxied response
-      ores.writeHead(pres.statusCode);
+// var express = require("express");
+// var router = express.Router();
 
-      // wait for data
-      pres.on("data", (chunk) => {
-        ores.write(chunk);
-      });
+// /* your app config here */
 
-      pres.on("close", () => {
-        // closed, let's end client request as well
-        ores.end();
-      });
+// router.use((oreq, ores) => {
+//   const options = {
+//     // host to forward to
+//     host: "127.0.0.1",
+//     // port to forward to
+//     port: 8050,
+//     // path to forward to
+//     path: "/",
+//     // request method
+//     method: "GET",
+//     // headers to send
+//     //headers: oreq.headers,
+//   };
 
-      pres.on("end", () => {
-        // finished, let's finish client request as well
-        ores.end();
-      });
-    })
-    .on("error", (e) => {
-      // we got an error
-      console.log(e.message);
-      try {
-        // attempt to set error message and http status
-        ores.writeHead(500);
-        ores.write(e.message);
-      } catch (e) {
-        // ignore
-      }
-      ores.end();
-    });
+//   const creq = http
+//     .request(options, (pres) => {
+//       // set encoding
+//       pres.setEncoding("utf8");
 
-  creq.end();
-});
+//       // set http status code based on proxied response
+//       ores.writeHead(pres.statusCode);
 
-module.exports = router;
+//       // wait for data
+//       pres.on("data", (chunk) => {
+//         ores.write(chunk);
+//       });
+
+//       pres.on("close", () => {
+//         // closed, let's end client request as well
+//         ores.end();
+//       });
+
+//       pres.on("end", () => {
+//         // finished, let's finish client request as well
+//         ores.end();
+//       });
+//     })
+//     .on("error", (e) => {
+//       // we got an error
+//       console.log(e.message);
+//       try {
+//         // attempt to set error message and http status
+//         ores.writeHead(500);
+//         ores.write(e.message);
+//       } catch (e) {
+//         // ignore
+//       }
+//       ores.end();
+//     });
+
+//   creq.end();
+// });
+
+// module.exports = router;

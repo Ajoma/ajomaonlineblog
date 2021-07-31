@@ -1,5 +1,5 @@
 {
-  "name": "ajomablog",
+  "name": "ajomaonlineblog",
   "version": "0.0.0",
   "author": "Emmanuel",
   "date": "July 25, 2021",
@@ -16,6 +16,8 @@
     "express-mongo-sanitize": "^2.1.0",
     "express-session": "^1.17.2",
     "http-errors": "~1.6.3",
+    "http-proxy": "^1.18.1",
+    "moment": "^2.29.1",
     "mongoose": "^5.13.3",
     "mongoose-unique-validator": "^2.0.3",
     "morgan": "~1.9.1",
