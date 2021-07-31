@@ -14,22 +14,8 @@ block content
         h2 The wonderful antics of our canine friends
   // Intro
   .contact-grid-container
-    .intro.p-lr
-      h2 Contact Us
-      p
-        | Vestibulum ut tempor lorem. Nam ut mi mauris. Aliquam quis viverra
-        a(href='#' target='_blank') velit.
-        |  Sed egestas, velit sit amet
-        |           luctus pretium, enim dolor interdum felis, at pretium tellus nibh id
-        |           velit. Maecenas semper tincidunt dolor tincidunt fringilla. Fusce
-        |           bibendum nunc ac magna elementum, a ultricies nulla posuere. Cras sed
-        |           lacus faucibus, ornare diam vitae, dapibus mauris. Ut ac est non
-        |           lectus gravida placerat at non lectus. Nunc blandit, elit eu tempor
-        |           aliquam, mi libero fringilla nisl, non sagittis massa justo in nunc.
-        |           Donec ornare sed arcu nec tempor. Duis nec ipsum varius, viverra lacus
-        |           sit amet, sollicitudin arcu.
     // Contact form
-    form( method='' action='/thankyou')
+    form( method='POST' action='/contact')
       h3 Connect with us
       .form-floating.m-3
         input#fname.form-control(type='text' placeholder='Your name' name='fname')
@@ -38,7 +24,7 @@ block content
         input#lname.form-control(type='text' placeholder='Your last name' name='lname')
         label.form-label(for='lname') Last Name
       .form-floating.m-3
-        input#emailadd.form-control(type='text' name='mail' placeholder='Email address' required='')
+        input#emailadd.form-control(type='email' name='email' placeholder='Email address')
         label.form-label(for='emailadd') Email 
       .form-floating.m-3
         textarea#comment.form-control(name='comment' placeholder='Comment...' rows='5')
@@ -57,8 +43,3 @@ block content
   // footer
   footer
 
-
-  if errors
-    ul
-      each error in errors
-        li.alert.alert-danger.m3= error

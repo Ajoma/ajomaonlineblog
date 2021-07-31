@@ -12,7 +12,7 @@ const pageRegister = {
 const pageShowPosts = {
   pagetitle: "Blog posts",
   pageheading: "List all posts",
-  pagemessage: "These are all postets.",
+  pagemessage: "These are all posts.",
 };
 
 /* Sign-up page. */

@@ -7,7 +7,7 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var postRouter = require("./routes/post");
-// var contactRouter = require("./routes/contact");
+var contactRouter = require("./routes/contact");
 // var thankyouRouter = require("./routes/thankyou");
 
 const mongoSanitize = require("express-mongo-sanitize");
@@ -57,7 +57,7 @@ require("./my-passport").init(app);
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/post", postRouter);
-// app.use("/contact", contactRouter);
+app.use("/contact", contactRouter);
 // app.use("/thankyou", thankyouRouter);
 
 // catch 404 and forward to error handler
